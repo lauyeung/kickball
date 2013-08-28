@@ -28,8 +28,12 @@ def collect_answer(team_number, type, position, destination)
   destination[position] = gets.chomp
 end
 
-
-
+def show_standings(league_data)
+puts "*** League Standings ***"
+league_data.each_with_index do | league_result, index |
+  puts "#{index + 1} #{league_result[0]}: #{league_result[1]}W, #{league_result[2]}L"
+  end
+end
 
 all_games = []
 input = ""
@@ -76,9 +80,22 @@ end
 sorted_league_results = league_results.sort_by {|item| item[3] }.reverse
 
 puts
-puts "*** League Standings ***"
-sorted_league_results.each_with_index do | league_result, index |
-  puts "#{index + 1} #{league_result[0]}: #{league_result[1]}W, #{league_result[2]}L"
-end
 
+standings = show_standings(sorted_league_results)
+
+puts
+puts "Would you like to export league standings? (Y/N)"
+export_response = gets.chomp.upcase
+if export_response == "Y"
+  puts "Path to export to?"
+  path_response = gets.chomp
+
+  File.open(path_response, 'w') do |f|
+  f.write standings
+  puts
+  puts "Data exported successfully..."
+  end
+end
+puts
+puts "Thanks for using The Greatest Kickball Tracker in Existence!"
 
