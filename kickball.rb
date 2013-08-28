@@ -13,26 +13,22 @@ def identify_winner(team_one_name, team_one_score, team_two_name, team_two_score
 
 end
 
+def collect_answer(team_number, type, position, destination)
+  puts "What was team #{team_number}'s #{type}?"
+  destination[position] = gets.chomp
+end
+
+
 all_games = []
-
-
 input = ""
 
 while input != "N"
-
   individual_game = []
 
-  puts "What was team 1's name?"
-  individual_game[0] = gets.chomp
-
-  puts "What was team 1's score?"
-  individual_game[1] = gets.chomp
-
-  puts "What was team 2's name?"
-  individual_game[2] = gets.chomp
-
-  puts "What was team 2's score?"
-  individual_game[3] = gets.chomp
+  collect_answer(1, "name", 0, individual_game)
+  collect_answer(1, "score", 1, individual_game)
+  collect_answer(2, "name", 2, individual_game)
+  collect_answer(2, "score", 3, individual_game)
 
   all_games << individual_game
 
@@ -41,6 +37,9 @@ while input != "N"
   puts
 
 end
+
+
+
 
 all_games. each_with_index do |game, index|
   winner = identify_winner(game[0], game[1], game[2], game[3])
