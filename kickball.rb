@@ -58,12 +58,6 @@ all_games.each_with_index do |game, index|
   puts "In game #{index + 1}, #{winner} is the victor!"
 end
 
-puts
-puts
-puts
-print league
-
-
 league.each do | team_name, all_results |
   team_league_result = ["", 0, 0, 0]
   team_league_result[0] = team_name
@@ -78,14 +72,9 @@ league.each do | team_name, all_results |
   league_results << team_league_result
 end
 
-puts
-puts
-puts
-print league_results
-puts
+
 sorted_league_results = league_results.sort_by {|item| item[3] }.reverse
 
-puts
 puts
 puts "*** League Standings ***"
 sorted_league_results.each_with_index do | league_result, index |
